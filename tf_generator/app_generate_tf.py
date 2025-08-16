@@ -1,17 +1,4 @@
 import streamlit as st
-# MUST be the first Streamlit command
-st.set_page_config(
-    layout="wide",
-    page_title="Auto Transfer Pro",
-    page_icon="🔄",
-    menu_items={
-        'Get Help': 'https://example.com',
-        'Report a bug': "https://example.com",
-        'About': "Auto Transfer Generator v1.0"
-    }
-)
-
-# ========== IMPORTS ==========
 import os
 import pathlib
 import random
@@ -91,39 +78,34 @@ def load_history():
     return {"history": {}, "status": {}}
 
 def load_accounts(_cipher):
-    """Load encrypted accounts with better error handling"""
+    """Load and decrypt account data"""
     try:
-        file_path = "auth_config.json"
-        if not os.path.exists(file_path):
-            st.warning("File auth_config.json tidak ditemukan. Membuat yang baru...")
-            default_data = {"accounts": {}}
-            with open(file_path, "w") as f:
-                json.dump(default_data, f)
-            return default_data
-        
-        with open(file_path, "r") as f:
-            st.write("File content:", f.read())  # Debug isi file
-            f.seek(0)  # Reset file pointer
+        if not os.path.exists("auth_config.json"):
+            return {"accounts": {}}
+            
+        with open("auth_config.json", "r") as f:
             encrypted = json.load(f)
             
-            if not isinstance(encrypted.get("accounts"), dict):
-                raise ValueError("Struktur data tidak valid")
-            
-            decrypted = {"accounts": {}}
-            for site, acc_list in encrypted.get("accounts", {}).items():
-                decrypted["accounts"][site] = []
-                for acc in acc_list:
-                    try:
-                        dec_acc = acc.copy()
-                        if "password" in dec_acc:
-                            dec_acc["password"] = _cipher.decrypt(
-                                acc["password"].encode()
-                            ).decode()
-                        decrypted["accounts"][site].append(dec_acc)
-                    except Exception as e:
-                        st.error(f"Gagal decrypt akun {site}: {str(e)}")
-                        decrypted["accounts"][site].append(acc)
-            return decrypted
+        decrypted = {"accounts": {}}
+        for site, acc_list in encrypted.get("accounts", {}).items():
+            decrypted["accounts"][site] = []
+            for acc in acc_list:
+                try:
+                    dec_acc = acc.copy()
+                    if "password" in dec_acc:
+                        dec_acc["password"] = _cipher.decrypt(
+                            acc["password"].encode()
+                        ).decode()
+                    decrypted["accounts"][site].append(dec_acc)
+                except:
+                    decrypted["accounts"][site].append(acc)
+                    
+        return decrypted
+        
+    except json.JSONDecodeError:
+        return {"accounts": {}}
+    except Exception:
+        return {"accounts": {}}
             
     except json.JSONDecodeError:
         st.error("File corrupt, membuat yang baru...")
@@ -270,24 +252,24 @@ def show_transfer_results(date_key, history, accounts):
 
 # ========== MAIN APP ==========
 def main():
-    # Initialize
     cipher = get_cipher_suite()
-    init_session_state()  # <- INI HARUS DIPANGGIL PERTAMA
+    init_session_state()
     
-    # Load data
-    jendela = load_jendela()
-    history = load_history()
-    accounts = load_accounts(cipher)
-    
-    # UI Header
-    st.title("🔄 Auto Transfer Generator Pro")
-    st.caption("Multi-Account Support | Secure Storage | Dynamic Bank Input")
-    
-    # Debug info (collapsible)
-    with st.expander("🔧 Debug Info", False):
-        st.write("Current directory:", os.getcwd())
-        st.write("Files:", os.listdir())
-        st.write("Jendela structure:", jendela.keys())
+    # Load data dengan error handling
+    try:
+        jendela = load_jendela()
+        history = load_history()
+        accounts = load_accounts(cipher)
+        
+        if not accounts.get("accounts"):
+            st.warning("Data akun kosong atau tidak terbaca")
+            accounts = {"accounts": {}}
+            
+    except Exception:
+        st.error("Gagal memuat data awal")
+        jendela = DEFAULT_JENDELA
+        history = {"history": {}, "status": {}}
+        accounts = {"accounts": {}}
     
     # Main tabs
     tab1, tab2, tab3 = st.tabs(["Generate", "Manage Sites", "Account Management"])
