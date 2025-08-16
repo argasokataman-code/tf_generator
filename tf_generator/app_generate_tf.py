@@ -87,29 +87,49 @@ def load_history():
     return {"history": {}, "status": {}}
 
 def load_accounts(_cipher):
-    """Load encrypted accounts"""
+    """Load encrypted accounts with better error handling"""
     try:
-        if os.path.exists("auth_config.json"):
-            with open("auth_config.json", "r") as f:
-                encrypted = json.load(f)
-                decrypted = {"accounts": {}}
-                for site, acc_list in encrypted.get("accounts", {}).items():
-                    decrypted["accounts"][site] = []
-                    for acc in acc_list:
-                        try:
-                            dec_acc = acc.copy()
-                            if "password" in dec_acc:
-                                dec_acc["password"] = _cipher.decrypt(
-                                    acc["password"].encode()
-                                ).decode()
-                            decrypted["accounts"][site].append(dec_acc)
-                        except Exception as e:
-                            st.error(f"Decrypt error for {site}: {str(e)}")
-                            decrypted["accounts"][site].append(acc)
-                return decrypted
+        file_path = "auth_config.json"
+        if not os.path.exists(file_path):
+            st.warning("File auth_config.json tidak ditemukan. Membuat yang baru...")
+            default_data = {"accounts": {}}
+            with open(file_path, "w") as f:
+                json.dump(default_data, f)
+            return default_data
+        
+        with open(file_path, "r") as f:
+            st.write("File content:", f.read())  # Debug isi file
+            f.seek(0)  # Reset file pointer
+            encrypted = json.load(f)
+            
+            if not isinstance(encrypted.get("accounts"), dict):
+                raise ValueError("Struktur data tidak valid")
+            
+            decrypted = {"accounts": {}}
+            for site, acc_list in encrypted.get("accounts", {}).items():
+                decrypted["accounts"][site] = []
+                for acc in acc_list:
+                    try:
+                        dec_acc = acc.copy()
+                        if "password" in dec_acc:
+                            dec_acc["password"] = _cipher.decrypt(
+                                acc["password"].encode()
+                            ).decode()
+                        decrypted["accounts"][site].append(dec_acc)
+                    except Exception as e:
+                        st.error(f"Gagal decrypt akun {site}: {str(e)}")
+                        decrypted["accounts"][site].append(acc)
+            return decrypted
+            
+    except json.JSONDecodeError:
+        st.error("File corrupt, membuat yang baru...")
+        default_data = {"accounts": {}}
+        with open("auth_config.json", "w") as f:
+            json.dump(default_data, f)
+        return default_data
     except Exception as e:
-        st.error(f"Account load error: {str(e)}")
-    return {"accounts": {}}
+        st.error(f"Error tak terduga: {str(e)}")
+        return {"accounts": {}}
 
 def save_data(jendela, accounts, history, cipher):
     """Save all data with encryption"""
@@ -248,12 +268,17 @@ def show_transfer_results(date_key, history, accounts):
 def main():
     # Initialize
     cipher = get_cipher_suite()
-    init_session_state()
+    
+    # Auto-recovery jika file tidak ada
+    if not os.path.exists("auth_config.json"):
+        st.warning("Membuat auth_config.json baru...")
+        with open("auth_config.json", "w") as f:
+            json.dump({"accounts": {}}, f)
     
     # Load data
     jendela = load_jendela()
     history = load_history()
-    accounts = load_accounts(cipher)
+    accounts = load_accounts(cipher)  # Pastikan cipher sudah diinisialisasi
     
     # UI Header
     st.title("🔄 Auto Transfer Generator Pro")
