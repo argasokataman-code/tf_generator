@@ -1,21 +1,178 @@
 {
-  "accounts": {
-    "ROYALKING4D": [
-      {
-        "bank": "Mandiri",
-        "username": "limandiri",
-        "password": "gAAAAABooG9IER2-xIvieqv65K_0sLxZLbiAo6zR8C7x2keCpCJUxMvYh94htTqM8Q1zvYsOD8OogrtdGbBiJx-KbIzvHkCFjQ=="
-      },
-      {
-        "bank": "BCA",
-        "username": "gatot69",
-        "password": "gAAAAABooG9IHh6JqDGPD3SzvnFSb-WV-RZvHM_eFkptyGGZCdvODYI3z5jKhjwymi5rERRcyNKRuazJOBrh3DVXPFwwi0PCgA=="
-      },
-      {
-        "bank": "Seabank",
-        "username": "jonijo",
-        "password": "gAAAAABooG9IRtMBZj8DgbDt7qDxb31CNpWqh4VdFABLuvhS5GfR5pjp03UM4RCmXqDmtwTykyIea1fBv1x97g9XkrO2HCVDKw=="
-      }
-    ]
-  }
+    "accounts": {
+        "ROYALKING4D": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "rivalinz",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "gatot69",
+                "password": "qwerty123"
+            }
+        ],
+        "PSO777": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "rivalinz",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "gatot69",
+                "password": "qwerty123"
+            }
+        ],
+        "INDOCAIR4D": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "jonijoobca",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "joseabang",
+                "password": "qwerty123"
+            }
+        ],
+        "CERI388": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "joseabang",
+                "password": "qwerty123"
+            }
+        ],
+        "IBOBET": [
+            {
+                "bank": "Mandiri",
+                "username": "jonijomandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            }
+        ],
+        "DIGISLOT": [
+            {
+                "bank": "Mandiri",
+                "username": "jonijomandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            }
+        ],
+        "GALAXY88": [
+            {
+                "bank": "Mandiri",
+                "username": "jonijomandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            }
+        ],
+        "ANDROSLOT": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "rivalinz",
+                "password": "qwerty123"
+            }
+        ],
+        "VIVO4D": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "joseabang",
+                "password": "qwerty123"
+            }
+        ],
+        "ANGKANET4D": [
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            }
+        ],
+        "INDO4D": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "jonijoobca",
+                "password": "qwerty123"
+            }
+        ],
+        "PAMAN EMPIRE": [
+            {
+                "bank": "Mandiri",
+                "username": "limandiri",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "BCA",
+                "username": "gatot69",
+                "password": "qwerty123"
+            },
+            {
+                "bank": "Seabank",
+                "username": "joseabang",
+                "password": "qwerty123"
+            }
+        ]
+    }
 }
