@@ -5,7 +5,6 @@ import random
 import json
 from datetime import datetime, time, timedelta
 import pytz
-from cryptography.fernet import Fernet
 
 # ========== CONSTANTS ==========
 DEFAULT_JENDELA = {
@@ -27,16 +26,6 @@ def init_session_state():
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
-
-# ========== ENCRYPTION ==========
-@st.cache_resource
-def get_cipher_suite():
-    key_path = "secret.key"
-    if not os.path.exists(key_path):
-        key = Fernet.generate_key()
-        with open(key_path, "wb") as key_file:
-            key_file.write(key)
-    return Fernet(open(key_path, "rb").read())
 
 # ========== DATA MANAGEMENT ==========
 @st.cache_data(ttl=300)
@@ -77,48 +66,36 @@ def load_history():
         st.error(f"History error: {str(e)}")
     return {"history": {}, "status": {}}
 
-def load_accounts(_cipher):
-    """Load and decrypt account data"""
+def load_accounts():
+    """Load account data tanpa enkripsi"""
     try:
-        if not os.path.exists("auth_config.json"):
-            return {"accounts": {}}
-            
-        with open("auth_config.json", "r") as f:
-            encrypted = json.load(f)
-            
-        decrypted = {"accounts": {}}
-        for site, acc_list in encrypted.get("accounts", {}).items():
-            decrypted["accounts"][site] = []
-            for acc in acc_list:
-                try:
-                    dec_acc = acc.copy()
-                    if "password" in dec_acc:
-                        dec_acc["password"] = _cipher.decrypt(
-                            acc["password"].encode()
-                        ).decode()
-                    decrypted["accounts"][site].append(dec_acc)
-                except:
-                    decrypted["accounts"][site].append(acc)
-                    
-        return decrypted
+        # Cek beberapa lokasi file
+        possible_paths = [
+            pathlib.Path(__file__).parent / "auth_config.json",
+            pathlib.Path("/workspaces/tf_generator/auth_config.json"),
+            pathlib.Path("auth_config.json")
+        ]
+        
+        for path in possible_paths:
+            if path.exists():
+                with open(path, "r") as f:
+                    return json.load(f)
+        
+        # Jika file tidak ditemukan
+        st.warning("File auth_config.json tidak ditemukan, menggunakan data kosong")
+        return {"accounts": {}}
         
     except json.JSONDecodeError:
-        return {"accounts": {}}
-    except Exception:
-        return {"accounts": {}}
-            
-    except json.JSONDecodeError:
-        st.error("File corrupt, membuat yang baru...")
-        default_data = {"accounts": {}}
+        st.error("Format file salah, membuat yang baru")
         with open("auth_config.json", "w") as f:
-            json.dump(default_data, f)
-        return default_data
+            json.dump({"accounts": {}}, f)
+        return {"accounts": {}}
     except Exception as e:
-        st.error(f"Error tak terduga: {str(e)}")
+        st.error(f"Error membaca file: {str(e)}")
         return {"accounts": {}}
 
-def save_data(jendela, accounts, history, cipher):
-    """Save all data with encryption"""
+def save_data(jendela, accounts, history):
+    """Save all data tanpa enkripsi"""
     try:
         # Clean empty data
         for window in jendela.values():
@@ -127,24 +104,12 @@ def save_data(jendela, accounts, history, cipher):
                 if not window[site]:
                     del window[site]
         
-        # Encrypt sensitive data
-        encrypted_acc = {"accounts": {}}
-        for site, acc_list in accounts["accounts"].items():
-            encrypted_acc["accounts"][site] = []
-            for acc in acc_list:
-                enc_acc = acc.copy()
-                if "password" in enc_acc:
-                    enc_acc["password"] = cipher.encrypt(
-                        acc["password"].encode()
-                    ).decode()
-                encrypted_acc["accounts"][site].append(enc_acc)
-        
         # Save files
         with open("jendela_config.json", "w") as f:
             json.dump(jendela, f, indent=2)
         
         with open("auth_config.json", "w") as f:
-            json.dump(encrypted_acc, f, indent=2)
+            json.dump({"accounts": accounts.get("accounts", {})}, f, indent=2)
             
         with open("history_advanced.json", "w") as f:
             json.dump(history, f, indent=2)
@@ -153,7 +118,7 @@ def save_data(jendela, accounts, history, cipher):
         return True
         
     except Exception as e:
-        st.error(f"Save failed: {str(e)}")
+        st.error(f"Gagal menyimpan: {str(e)}")
         return False
 
 # ========== CORE FUNCTIONS ==========
@@ -252,14 +217,13 @@ def show_transfer_results(date_key, history, accounts):
 
 # ========== MAIN APP ==========
 def main():
-    cipher = get_cipher_suite()
     init_session_state()
     
     # Load data dengan error handling
     try:
         jendela = load_jendela()
         history = load_history()
-        accounts = load_accounts(cipher)
+        accounts = load_accounts()
         
         if not accounts.get("accounts"):
             st.warning("Data akun kosong atau tidak terbaca")
@@ -294,7 +258,7 @@ def main():
                     if success:
                         if expired > 0:
                             st.info(f"Cleaned {expired} expired entries")
-                        if save_data(jendela, accounts, history, cipher):
+                        if save_data(jendela, accounts, history):
                             st.success("Generated successfully!")
                             st.rerun()
         
@@ -346,7 +310,7 @@ def main():
                         st.error("Harap isi nama situs dan minimal 1 bank!")
                     else:
                         jendela[window][site_name] = banks
-                        save_data(jendela, accounts, history, cipher)
+                        save_data(jendela, accounts, history)
                         st.session_state.bank_count = 1
                         st.success(f"Situs {site_name} ditambahkan!")
                         st.rerun()
@@ -383,14 +347,14 @@ def main():
                                 if new_name != selected_site:
                                     del jendela[selected_window][selected_site]
                                 jendela[selected_window][new_name] = new_banks
-                                save_data(jendela, accounts, history, cipher)
+                                save_data(jendela, accounts, history)
                                 st.session_state.edit_bank_count = len(new_banks)
                                 st.success("Data diperbarui!")
                                 st.rerun()
                     with col2:
                         if st.form_submit_button("🗑️ Hapus", type="secondary"):
                             del jendela[selected_window][selected_site]
-                            save_data(jendela, accounts, history, cipher)
+                            save_data(jendela, accounts, history)
                             st.success("Situs dihapus!")
                             st.rerun()
             else:
@@ -435,7 +399,7 @@ def main():
                             "username": username,
                             "password": password
                         })
-                        if save_data(jendela, accounts, history, cipher):
+                        if save_data(jendela, accounts, history):
                             st.success(f"Akun {username} tersimpan!")
                             st.rerun()
         
@@ -465,7 +429,7 @@ def main():
                                     "username": new_username,
                                     "password": new_password
                                 })
-                                if save_data(jendela, accounts, history, cipher):
+                                if save_data(jendela, accounts, history):
                                     st.success("Akun diperbarui!")
                                     st.rerun()
                         with col2:
@@ -473,7 +437,7 @@ def main():
                                 del accounts["accounts"][selected_site][acc_index]
                                 if not accounts["accounts"][selected_site]:
                                     del accounts["accounts"][selected_site]
-                                if save_data(jendela, accounts, history, cipher):
+                                if save_data(jendela, accounts, history):
                                     st.success("Akun dihapus!")
                                     st.rerun()
                 else:
