@@ -30,12 +30,16 @@ TIMEZONE = pytz.timezone("Asia/Jakarta")
 
 # ========== SESSION STATE ==========
 def init_session_state():
-    if 'bank_count' not in st.session_state:
-        st.session_state.bank_count = 1
-    if 'edit_bank_count' not in st.session_state:
-        st.session_state.edit_bank_count = 1
-    if 'override' not in st.session_state:
-        st.session_state.override = False
+    """Initialize all required session state variables"""
+    defaults = {
+        'bank_count': 1,
+        'edit_bank_count': 1,
+        'override': False
+    }
+    
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
 # ========== ENCRYPTION ==========
 @st.cache_resource
@@ -268,17 +272,12 @@ def show_transfer_results(date_key, history, accounts):
 def main():
     # Initialize
     cipher = get_cipher_suite()
-    
-    # Auto-recovery jika file tidak ada
-    if not os.path.exists("auth_config.json"):
-        st.warning("Membuat auth_config.json baru...")
-        with open("auth_config.json", "w") as f:
-            json.dump({"accounts": {}}, f)
+    init_session_state()  # <- INI HARUS DIPANGGIL PERTAMA
     
     # Load data
     jendela = load_jendela()
     history = load_history()
-    accounts = load_accounts(cipher)  # Pastikan cipher sudah diinisialisasi
+    accounts = load_accounts(cipher)
     
     # UI Header
     st.title("🔄 Auto Transfer Generator Pro")
