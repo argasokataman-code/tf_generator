@@ -1,104 +1,202 @@
 {
-    "history": {
-        "2025-08-15": [
-            {
-                "akun": "CERI388",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela1"
-            },
-            {
-                "akun": "INDOCAIR4D",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela1"
-            },
-            {
-                "akun": "ROYALKING4D",
-                "bank": "Mandiri",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela1"
-            },
-            {
-                "akun": "PSO777",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela1"
-            },
-            {
-                "akun": "GALAXY88",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela2"
-            },
-            {
-                "akun": "DIGISLOT",
-                "bank": "Seabank",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela2"
-            },
-            {
-                "akun": "IBOBET",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela2"
-            },
-            {
-                "akun": "ANDROSLOT",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela2"
-            },
-            {
-                "akun": "INDO4D",
-                "bank": "Mandiri",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela3"
-            },
-            {
-                "akun": "VIVO4D",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela3"
-            },
-            {
-                "akun": "ANGKANET4D",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela3"
-            },
-            {
-                "akun": "PAMAN EMPIRE",
-                "bank": "BCA",
-                "tipe_game": "Hongkong",
-                "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
-                "status_akses": "OK",
-                "jendela": "jendela3"
-            }
-        ],
-        "last_jendela": "jendela1"
-    },
-    "status": {}
+  "history": {
+    "2025-08-15": [
+      {
+        "akun": "CERI388",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "INDOCAIR4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "ROYALKING4D",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "PSO777",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "GALAXY88",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "DIGISLOT",
+        "bank": "Seabank",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "IBOBET",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "ANDROSLOT",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "INDO4D",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "VIVO4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "ANGKANET4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "PAMAN EMPIRE",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-15T18:34:21.678958+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      }
+    ],
+    "last_jendela": "jendela1",
+    "2025-08-16": [
+      {
+        "akun": "ROYALKING4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "INDOCAIR4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "CERI388",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "PSO777",
+        "bank": "Seabank",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela1"
+      },
+      {
+        "akun": "ANDROSLOT",
+        "bank": "Seabank",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "GALAXY88",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "IBOBET",
+        "bank": "Seabank",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "DIGISLOT",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela2"
+      },
+      {
+        "akun": "PAMAN EMPIRE",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "INDO4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "ANGKANET4D",
+        "bank": "Mandiri",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      },
+      {
+        "akun": "VIVO4D",
+        "bank": "BCA",
+        "tipe_game": "Hongkong",
+        "waktu_transfer": "2025-08-16T18:45:12.547755+07:00",
+        "status_akses": "OK",
+        "jendela": "jendela3"
+      }
+    ]
+  },
+  "status": {}
 }
