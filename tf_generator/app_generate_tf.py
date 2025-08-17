@@ -5,6 +5,31 @@ import os
 from datetime import datetime, time, timedelta
 import pytz
 
+# ========== DEBUGGING SETUP ==========
+def debug_files():
+    """Tampilkan info file penting"""
+    st.sidebar.header("🔍 Debug Info")
+    files_to_check = ["auth_config.json", "jendela_config.json", "history_advanced.json"]
+    
+    for file in files_to_check:
+        exists = os.path.exists(file)
+        st.sidebar.write(f"{'✅' if exists else '❌'} {file}: {'Found' if exists else 'Missing'}")
+        
+        if exists:
+            try:
+                with open(file, 'r') as f:
+                    data = json.load(f)
+                    st.sidebar.json(data, expanded=False)
+            except Exception as e:
+                st.sidebar.error(f"Error reading {file}: {str(e)}")
+
+# Panggil debugger
+debug_files()
+
+# Force clear cache dan reload data
+if st.sidebar.button("🔄 Force Reload Data"):
+    st.cache_data.clear()
+    st.rerun()
 # ========== INITIAL SETUP ==========
 # Initialize session state for dynamic bank input
 if 'bank_count' not in st.session_state:
