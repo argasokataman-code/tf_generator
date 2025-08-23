@@ -1,0 +1,43 @@
+=== ANALISIS ROOT NUMBER ===
+Total Data: 1691 angka
+Tanggal Analisis: 2025-08-22 22:05:32
+
+📊 FREKUENSI ROOT NUMBER:
+Root 1: 158 kali (9.3%)
+Root 2: 180 kali (10.6%)
+Root 3: 198 kali (11.7%)
+Root 4: 196 kali (11.6%)
+Root 5: 176 kali (10.4%)
+Root 6: 199 kali (11.8%)
+Root 7: 178 kali (10.5%)
+Root 8: 206 kali (12.2%)
+Root 9: 200 kali (11.8%)
+
+⏰ INTERVAL KEMUNCULAN (hari):
+Root 1: 7 hari
+Root 2: 24 hari
+Root 3: 2 hari
+Root 4: 17 hari
+Root 5: 0 hari
+Root 6: 12 hari
+Root 7: 11 hari
+Root 8: 1 hari
+Root 9: 6 hari
+
+🎯 REKOMENDASI ROOT PRIORITAS:
+Root 2: 24 hari → ★★★
+Root 4: 17 hari → ★★★
+Root 6: 12 hari → ★★★
+Root 7: 11 hari → ★★★
+Root 1: 7 hari → ★★★
+
+📋 DETAIL ANGKANYA:
+Root 1: 01, 10, 19, 28, 37, 46, 55, 64, 73, 82, 91
+Root 2: 02, 11, 20, 29, 38, 47, 56, 65, 74, 83, 92
+Root 3: 03, 12, 21, 30, 39, 48, 57, 66, 75, 84, 93
+Root 4: 04, 13, 22, 31, 40, 49, 58, 67, 76, 85, 94
+Root 5: 05, 14, 23, 32, 41, 50, 59, 68, 77, 86, 95
+Root 6: 06, 15, 24, 33, 42, 51, 60, 69, 78, 87, 96
+Root 7: 07, 16, 25, 34, 43, 52, 61, 70, 79, 88, 97
+Root 8: 08, 17, 26, 35, 44, 53, 62, 71, 80, 89, 98
+Root 9: 00, 09, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99
